@@ -1,49 +1,12 @@
 ![CF](https://camo.githubusercontent.com/70edab54bba80edb7493cad3135e9606781cbb6b/687474703a2f2f692e696d6775722e636f6d2f377635415363382e706e67) 03: Asynchronous Callbacks
 ===
 
-## Submission Instructions
-* Work in a fork of this repository
-* Work in a branch called `lab-03` on your fork
-* Open a pull request to your forked repository
-* Set up Travis CI on your forked repository to enable continuous integration
-* Submit on canvas a question and observation, how long you spent, and a link to your pull request
+[![Build Status](https://travis-ci.org/TCW417/03-asyncronous-callbacks.svg?branch=master)](https://travis-ci.org/TCW417/03-asyncronous-callbacks)
 
-## Resources
-* [fs module docs](https://nodejs.org/api/fs.html)
+This lab involves the following files and functions:
 
-## Configuration
-Configure the root of your repository with the following files and directories. Thoughfully name and organize any aditional configuration or module files.
-* **README.md** - contains documentation
-* **.gitignore** - contains a [robust](http://gitignore.io) `.gitignore` file
-* **.eslintrc.json** - contains the course linter configuratoin
-* **.eslintignore** - contains the course linter ignore configuration
-* **.travis.yml** - contains your travis testing instructions
-* **package.json** - contains npm package config 
-  * jest and eslint must be dependencies
-  * create a `lint` script for running eslint `"lint": "eslint **/.js"`
-  * create a `test` script for running tests
-* **lib/** - contains module definitions
-* **data/** - contains the text files used by the program
-* **\_\_test\_\_/** - contains unit tests
+- **lib/reader.js**  This file exports readThreeFiles(fd: array[3] of file paths, callback: f(error, data array[3])).  The function takes an array of three file paths and a callback with the error first signature, with the second parameter being an array of three buffers, data in which corresponds with the three paths supplied to the "parent" function.  Data returned IS NOT modified, so it's up to the calling function to deal with data conversion as needed.
 
-## Testing
-##### File Reader Module Tests
-* Use `describe` and `it` (or `test`) methods to define descriptive tests and increase readability
-* Each `it` callback should aim to test a small, well defined, feature of a function
-* Write tests to ensure that the reader function rejects errors with invalid file paths
-* Write tests to ensure that the reader function correctly resolves mapped string data for an array of file paths
+- **__test__/reader.test.js** This file executes tests of readThreeFiles function.
 
-## Feature Tasks
-##### File Reader Module
-In the lib/ directory create a `reader.js` module that exports a single function. The reader module should take an array of three file paths and resolve a mapped array of strings loaded from each file using an error-first callback. The string data should be in the same order as the file path data (mapped). If an error occurs, it should immediately reject the error using the callback and stop execution.
-
-* The file reader module should have the function signature `(paths, callback) => undefined`
-* On failure, the file reader module should invoke the callback with an error `callback(error)`
-* On success, the file reader module should invoke the callback with `null` as the first parameter and the result as the second parameter - `callback(null, result)`
-
-##### Stretch
-Write the file reader function recursively so that it will be able to support 0 or more paths.
-
-##  Documentation
-Add your Travis CI build badge to the top of your README.md. Describe the exported values of each module you have defined. Every function description should include it's arity (expected number of parameters), the expected data for each paramiter (data-type and limitations), and it's behavior (for both valid and invalued use). Feel free to write any additional information in your README.md.
-
+- **__test__/mock_data/testN.txt** Three files with text with which to test the readThreeFiles function.
